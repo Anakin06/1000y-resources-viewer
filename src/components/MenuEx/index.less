@@ -1,0 +1,185 @@
+.container {
+  height: 30px;
+  background: rgb(32, 33, 32);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  user-select: none;
+  text-align: center;
+}
+
+.controls {
+  z-index: 3000;
+  margin-left: auto;
+  -webkit-app-region: no-drag;
+  font: normal normal normal 16px/1 codicon;
+  div {
+    color: #ccc;
+    display: inline-block;
+    line-height: 30px;
+    height: 100%;
+    width: 46px;
+    font-size: 16px;
+    //color: rgba(204, 204, 204, 0.6);
+    &:hover {
+      background-color: hsla(0, 0%, 100%, 0.1);
+    }
+  }
+}
+
+.minimize {
+  &:before {
+    content: "\eaba";
+  }
+}
+
+.maximize {
+  &:before {
+    content: "\eab9";
+  }
+}
+
+.unmaximize {
+  &:before {
+    content: "\eabb";
+  }
+}
+
+.close {
+  &:before {
+    content: "\eab8";
+  }
+  &:hover {
+    background-color: rgba(232, 17, 35, 0.9) !important;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.dragRegion {
+  -webkit-app-region: drag;
+  flex-shrink: 1;
+  flex-grow: 1;
+  line-height: 30px;
+  height: 30px;
+}
+
+.appIcon {
+  margin: 0px 3px 0 3px;
+  position: relative;
+  -webkit-app-region: drag;
+  height: 30px;
+  width: 30px;
+  &:before {
+    position: absolute;
+    top: 2px;
+    content: "";
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url("../../assets/favicon.png");
+    background-size: cover;
+  }
+}
+
+.menubar {
+  flex-shrink: 1;
+  display: flex;
+  z-index: 3000;
+  -webkit-app-region: no-drag;
+  height: 30px;
+  line-height: 30px;
+}
+
+.menubtn {
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 8px;
+  cursor: default;
+  -webkit-app-region: no-drag;
+  zoom: 1;
+  white-space: nowrap;
+  outline: 0;
+  color: rgba(204, 204, 204, 0.6);
+  font-size: 14px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+  }
+}
+
+.itemsHolder {
+  box-shadow: rgb(0, 0, 0) 0px 2px 4px !important;
+  color: rgb(204, 204, 204) !important;
+  background-color: rgb(30, 31, 28) !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+.item {
+  color: rgb(204, 204, 204);
+  display: flex;
+  position: relative;
+  margin: 1px 0;
+  cursor: default;
+  &:hover {
+    background-color: #8d8871;
+    color: #fff;
+  }
+}
+
+.disabled {
+  color: rgba(204, 204, 204, 0.6);
+  &:hover {
+    background: none;
+    color: rgba(204, 204, 204, 0.6);
+  }
+}
+
+.separator {
+  padding: 0.2em 0 0;
+  margin-bottom: 0.2em;
+  border-bottom: 1px solid rgb(187, 187, 187);
+  margin-left: 0.8em;
+  margin-right: 0.8em;
+}
+
+.keybinding {
+  display: inline-block;
+  flex: 2 1 auto;
+  padding: 0 1em;
+  text-align: right;
+  opacity: 0.4;
+}
+
+.itemCheck {
+  display: flex;
+  width: 2em;
+  font: normal normal normal 16px/1 codicon;
+  &:before {
+    content: "\eab2";
+  }
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.itemLabel {
+  display: inline-block;
+  padding: 0 2em;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  font-size: 12px;
+}

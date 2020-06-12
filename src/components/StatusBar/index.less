@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 22px;
+  background-color: rgb(65, 67, 57);
+  color: rgb(255, 255, 255);
+  font-family: Segoe WPC, Segoe UI, sans-serif;
+  text-align: left;
+  display: flex;
+  font-size: 12px;
+}
+
+.items {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 22px;
+  &:global.left {
+    flex-grow: 1;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  &:global.right {
+    flex-direction: row-reverse;
+  }
+  &:first-child {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  a {
+    cursor: default;
+    padding: 0 5px;
+    display: block;
+    color: #fff;
+  }
+}
+
+.item {
+  &:global.last {
+    padding-right: 7px;
+  }
+}
+
+.loading {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+}
+
+  
+
+
+
+  
+
+ 
+

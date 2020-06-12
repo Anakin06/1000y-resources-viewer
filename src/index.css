@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(204, 204, 204);
+  background-color: rgb(30, 31, 28);
+  overflow: hidden;
+}
+
+html,
+body {
+  background-color: rgb(30, 31, 28);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@font-face {
+  font-family: codicon;
+  src: url("./assets/codicon.ttf") format("truetype");
+}
+
+@keyframes breath {
+  0% {
+    animation-timing-function: cubic-bezier(0.9647, 0.2413, -0.0705, 0.7911);
+    transform: scale(0.9099999999999999);
+  }
+  51% {
+    animation-timing-function: cubic-bezier(0.9226, 0.2631, -0.0308, 0.7628);
+    transform: scale(1.02994);
+  }
+  100% {
+    transform: scale(0.9099999999999999);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid rgba(121, 121, 121, 0.2);
+  border: 1px solid rgba(121, 121, 121, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(121, 121, 121, 0.4);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(121, 121, 121, 0.4);
+}
+::-webkit-scrollbar-corner {
+  background: none;
+}

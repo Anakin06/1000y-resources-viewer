@@ -1,0 +1,59 @@
+.container {
+  background: #272822;
+}
+
+.cards {
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+  &:after {
+    content: "";
+    display: table;
+    width: 100%;
+    height: 5px;
+  }
+}
+
+.item {
+  flex: 1 0 auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(204, 204, 204) !important;
+  padding-right: 20px;
+  flex-wrap: nowrap;
+  user-select: none;
+  cursor: pointer;
+  height: 48px;
+}
+
+.playing {
+  background: rgba(255, 0, 0, 0.4);
+}
+
+.playIcon {
+  color: rgb(204, 204, 204);
+
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 12px;
+  flex-shrink: 0;
+  user-select: none;
+  display: inline-block;
+}
+
+.label {
+  display: flex;
+  line-height: 48px;
+  white-space: nowrap;
+}
