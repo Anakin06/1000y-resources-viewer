@@ -27,7 +27,7 @@ function createWindow() {
       webSecurity: false,
       enableRemoteModule: true,
     },
-    frame: false,
+    frame: process.platform === "darwin",
     show: false,
   });
   win.on("ready-to-show", () => win.show());

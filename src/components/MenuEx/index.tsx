@@ -96,6 +96,8 @@ const MenuEx = () => {
     };
   }, [history, dispatch]);
 
+  if (process.platform !== "darwin") return null;
+
   return (
     <div className={cls}>
       <div className={styles.appIcon}></div>

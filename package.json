@@ -32,7 +32,7 @@
   },
   "electron": true,
   "scripts": {
-    "preinstall": "cross-env ELECTRON_MIRROR=\"https://cdn.npm.taobao.org/dist/electron/\"",
+    "preinstall": "export ELECTRON_MIRROR=\"https://cdn.npm.taobao.org/dist/electron/\"",
     "start": "colas start",
     "build": "cross-env ELECTRON_MIRROR=\"https://cdn.npm.taobao.org/dist/electron/\" colas build --dir"
   },
@@ -47,6 +47,7 @@
   "build": {
     "appId": "com.example.electron-cra",
     "extends": null,
+    "productName": "1000y",
     "icon": "public/favicon.png",
     "extraMetadata": {
       "main": "build/electron.js"
