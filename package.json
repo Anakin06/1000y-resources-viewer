@@ -2,6 +2,8 @@
   "name": "1000y-resources-viewer",
   "version": "0.1.0",
   "private": true,
+  "author": "YT",
+  "description": "Resources export",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -17,6 +19,7 @@
     "@types/react-virtualized": "^9.21.10",
     "classnames": "^2.2.6",
     "comlink": "^4.3.0",
+    "cross-env": "^7.0.2",
     "maxrects-packer": "^2.6.0",
     "pretty-bytes": "^5.3.0",
     "react": "^16.13.1",
@@ -29,8 +32,9 @@
   },
   "electron": true,
   "scripts": {
+    "preinstall": "cross-env ELECTRON_MIRROR=\"https://cdn.npm.taobao.org/dist/electron/\"",
     "start": "colas start",
-    "build": "react-scripts build"
+    "build": "cross-env ELECTRON_MIRROR=\"https://cdn.npm.taobao.org/dist/electron/\" colas build --dir"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +47,7 @@
   "build": {
     "appId": "com.example.electron-cra",
     "extends": null,
+    "icon": "public/favicon.png",
     "extraMetadata": {
       "main": "build/electron.js"
     },

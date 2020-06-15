@@ -1,5 +1,5 @@
 import { remote } from "electron";
-import { SPRITE, EFFECT } from "../components/MenuEx/native";
+import { SPRITE, EFFECT, ACTION } from "../components/MenuEx/native";
 
 export type Ext = "Map" | "Sprite" | "Audio" | "Action" | "Effect";
 const fileTypes = {
@@ -26,7 +26,7 @@ const fileTypes = {
 };
 
 export async function openForBrowser(ext?: Ext) {
-  const multi = ext === SPRITE || ext === EFFECT;
+  const multi = ext === SPRITE || ext === EFFECT || ext === ACTION;
   const properties = ["openFile", multi ? "multiSelections" : undefined].filter(
     Boolean
   ) as any;

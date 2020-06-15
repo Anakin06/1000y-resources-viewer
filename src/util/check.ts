@@ -21,3 +21,7 @@ export function isATZPkg(file?: string | string[]): file is string[] {
 export function isEFTPkg(file?: string | string[]): file is string[] {
   return checkFile(/.eft$/, file);
 }
+
+export function isATDFile(file?: string | string[]): file is string[] {
+  return checkFile(/.atd$/, file);
+}

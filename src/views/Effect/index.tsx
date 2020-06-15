@@ -1,14 +1,6 @@
 import React from "react";
-import BaseView, { BaseViewerProps } from "../Sprite/BaseViewer";
-
-import { isEFTPkg } from "../../util/check";
-
-const options: BaseViewerProps = {
-  title: "Effect Viewer",
-  checkFn: isEFTPkg,
-  type: "eft",
-};
+import BaseView from "../Sprite/BaseViewer";
 
 export default () => {
-  return <BaseView {...options} />;
+  return <BaseView title="Effect Viewer" type="eft" />;
 };

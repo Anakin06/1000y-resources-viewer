@@ -28,6 +28,7 @@ function readWave(stream: FileStream) {
 }
 
 export type ATZWAVE = {
+  id: number;
   name: string;
   data: Buffer;
   size: string;
@@ -39,7 +40,7 @@ export function decode(buf: ArrayBuffer) {
   const waves: ATZWAVE[] = [];
   for (let i = 0; i < count; i++) {
     const wave = readWave(stream);
-    waves.push(wave);
+    waves.push({ ...wave, id: i });
   }
   return waves;
 }

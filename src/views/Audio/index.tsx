@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import styles from "./index.less";
 import { useSelect } from "../../store";
 import { isAudioPkg } from "../../util/check";
@@ -7,15 +6,14 @@ import codec from "../../codec";
 import { ATZWAVE } from "../../codec/AudioPkg";
 import { setMessage, setLoading, setInfo } from "../../store/action";
 import { play, clear } from "./Player";
-import native, { enableOpenMenu } from "../../components/MenuEx/native";
 import { browserFolder } from "../../util/dialog";
 import { emptyDir } from "fs-extra";
 import { resolve } from "path";
 import { FileToWrite, writeFiles } from "../../util/fileSystem";
-
-function getHeight() {
-  return `calc(100vh - ${process.platform === "darwin" ? "22px" : "52px"})`;
-}
+import { Column } from "../../components/VirtualizedTable";
+import Table from "../../components/VirtualizedTable";
+import { useAutoSize } from "../../util/resizeable";
+import { useExport } from "../../util/hooks";
 
 async function exportAudios(
   waves: ATZWAVE[],
@@ -36,50 +34,30 @@ async function exportAudios(
   }
 }
 
+export const columns: Column[] = [
+  { id: "name", label: "Name" },
+  { id: "size", label: "File\u00a0Size", width: 150 },
+];
+
 function Audio() {
-  const [maxHeight, setMaxHeight] = useState(getHeight());
   const [waves, setWaves] = useState<ATZWAVE[]>([]);
-  const [current, setCurrent] = useState(-1);
   const { file, dispatch } = useSelect();
+  const [selectedId, setSelectedID] = useState(-1);
+  const { height } = useAutoSize();
 
-  useEffect(() => {
-    enableOpenMenu(true);
-    const onExport = async function () {
-      enableOpenMenu(false);
-      try {
-        dispatch(setLoading(true));
-        await exportAudios(waves, (msg) => {
-          dispatch(setMessage(msg));
-        });
-        dispatch(setMessage("done."));
-      } catch (_) {
-        dispatch(setMessage("Export failed."));
-      }
-      dispatch(setLoading(false));
-      enableOpenMenu(true);
-    };
-    native.on("export", onExport);
-    return () => native.off("export", onExport);
-  }, [waves, dispatch]);
-
-  useEffect(() => {
-    document.title = "Audio";
-    const resize = () => {
-      setMaxHeight(getHeight());
-    };
-
-    window.addEventListener("resize", resize);
-    return () => {
-      clear();
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
+  useExport(async () => {
+    try {
+      await exportAudios(waves, (msg) => dispatch(setMessage(msg)));
+      dispatch(setMessage("done."));
+    } catch (_) {
+      dispatch(setMessage("Export failed."));
+    }
+  });
 
   useEffect(() => {
     if (!isAudioPkg(file)) return;
     dispatch(setMessage(`Parsing ${file}`));
     dispatch(setLoading(true));
-
     const load = async function () {
       const result = await codec.decodeAudioPkg(file);
       setWaves((arr) => result);
@@ -89,34 +67,26 @@ function Audio() {
     load();
   }, [file, dispatch]);
 
-  const onClick = (id: number) => {
-    if (current === id) {
-      setCurrent(-1);
+  const onRowClick = (id: number) => {
+    if (selectedId === id) {
+      setSelectedID(-1);
+      dispatch(setInfo(""));
       clear();
       return;
     }
-    setCurrent(id);
-    play(id, waves[id].data, () => {
-      setCurrent(-1);
-      dispatch(setInfo(""));
-    });
+    setSelectedID(id);
+    play(id, waves[id].data, () => dispatch(setInfo("")));
     dispatch(setInfo("🔊‬ " + waves[id].name));
   };
 
   return (
-    <div className={styles.container} style={{ height: maxHeight }}>
-      <div className={styles.cards} style={{ maxHeight }}>
-        {waves.map(({ name, size }, i) => (
-          <Card
-            key={name}
-            size={size}
-            id={i}
-            playing={current === i}
-            onClick={onClick}
-            name={name}
-          />
-        ))}
-      </div>
+    <div className={styles.container} style={{ height }}>
+      <Table
+        columns={columns}
+        data={waves}
+        selectedId={selectedId}
+        onRowClick={onRowClick}
+      />
     </div>
   );
 }

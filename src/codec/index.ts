@@ -134,6 +134,12 @@ class Codec {
     return await this.worker.decodeEFT(buf);
   }
 
+  @Process()
+  async decodeATD(file: string) {
+    const buf = await readFile(file);
+    return await this.worker.decodeATD(buf);
+  }
+
   terminate() {
     this._worker.terminate();
   }

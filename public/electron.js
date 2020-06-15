@@ -156,15 +156,11 @@ const menu = Menu.buildFromTemplate([
   {
     role: "Help",
     submenu: [
-      {
-        label: "Resource Structure",
-      },
-      { role: "toggledevtools" },
-      { type: "separator" },
+      process.env.NODE_ENV === "development" && { role: "toggledevtools" },
       {
         label: "About",
       },
-    ],
+    ].filter(Boolean),
   },
 ]);
 

@@ -8,6 +8,7 @@ import Audio from "./views/Audio";
 import codec from "./codec";
 import Sprite from "./views/Sprite";
 import Effect from "./views/Effect";
+import Action from "./views/Action";
 
 export default () => {
   window.onbeforeunload = (e: any) => {
@@ -20,6 +21,7 @@ export default () => {
           <Menu />
 
           <Switch>
+            <Route path="/action" component={Action} />
             <Route path="/effect" component={Effect} />
             <Route path="/sprite" component={Sprite} />
             <Route path="/audio" component={Audio} />

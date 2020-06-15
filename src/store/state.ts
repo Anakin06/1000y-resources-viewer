@@ -10,10 +10,8 @@ export interface State {
 export const defaultState: State = {
   // file: "D:/Focus/archive/newversion/wav/effect.atw",
   file: [
-    "D:\\Focus\\archive\\newversion\\effect\\_1000.eft",
-    "D:\\Focus\\archive\\newversion\\effect\\_1001.eft",
-    "D:\\Focus\\archive\\newversion\\effect\\_0.eft",
-    "D:\\Focus\\archive\\newversion\\effect\\_1.eft",
+    "D:/Focus/archive/newversion/sprite/_111.atz",
+    "D:/Focus/archive/newversion/sprite/_112.atz",
   ],
   message: "",
   filename: "",

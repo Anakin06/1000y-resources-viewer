@@ -8,6 +8,7 @@ import ObjEncoder from "../ObjEncoder";
 import { decode as audioDecode } from "../AudioPkg";
 import EFTDecoder from "../EFTDecoder";
 import ATZDecoder from "../ATZDecoder";
+import ATDDecoder from "../ATDDecoder";
 
 const decodeMap = function (buf: ArrayBuffer) {
   const reader = new MapReader(Buffer.from(buf));
@@ -83,6 +84,15 @@ const decodeEFT = async function (buf: ArrayBuffer) {
   };
 };
 
+const decodeATD = async function (buf: ArrayBuffer) {
+  const reader = new ATDDecoder(Buffer.from(buf));
+  await reader.read();
+  return {
+    jsonString: reader.jsonString,
+    size: reader.size,
+  };
+};
+
 const exports = {
   decodeMap,
   decodeTile,
@@ -94,6 +104,7 @@ const exports = {
   decodeAudioPkg,
   decodeATZ,
   decodeEFT,
+  decodeATD,
 };
 
 export type WorkerApi = typeof exports;
