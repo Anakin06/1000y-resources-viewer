@@ -96,7 +96,7 @@ const MenuEx = () => {
     };
   }, [history, dispatch]);
 
-  if (process.platform !== "darwin") return null;
+  if (process.platform === "darwin") return null;
 
   return (
     <div className={cls}>
