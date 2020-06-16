@@ -1,7 +1,7 @@
 {
   "name": "1000y-resources-viewer",
   "version": "0.1.0",
-  "private": true,
+  "license": "WFTPL",
   "author": "YT",
   "description": "Resources export",
   "dependencies": {
